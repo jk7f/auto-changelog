@@ -5,5 +5,7 @@ Uses node to run the `git tag -l  -n10` command against your repo, after which a
 
 ## usage
 Copy the files into a project folder, run `npm install` to get the dependencies.
+![install command](install1.png)
 
 Running `gulp` or `gulp renderChangelog` will give you a fresh changelog in HTML
+![install command](install2.png)
