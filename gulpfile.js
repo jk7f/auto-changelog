@@ -1,7 +1,7 @@
 var gulp  = require('gulp');
 var shell = require('gulp-shell');
 
-// to be ran from the crm.dtcmedia.nl repo directory, else change the first task like so:
+// to be ran from a valid repo directory, else change the first task like so:
 // 'forever start src/server.js /path/to/project/'
 gulp.task('renderChangelog', shell.task([
     'forever start src/server.js',
