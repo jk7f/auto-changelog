@@ -27,10 +27,13 @@ var tags = myRepo.myGetTagsSync('-l -n10');
 function removeWhitespace () {
     for (var i = 0; i < tags.length; i++) {
         tags[i] = tags[i].split("           ");
+        if (tags[i]) {
+            tags[i] = JSON.stringify(tags[i]);
+        }
     }
+
 }
 removeWhitespace();
-
 // get the git URL in order to extract the name from it client-side
 var remote = myRepo.getRemotesSync();
 
@@ -41,14 +44,13 @@ function extractTitle (toExtract) {
     return toExtract.slice(begin+9, end-1);
 }
 
-
 var toWrite = '<body>'+
     '<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>' +
     '<script>' +
     'var changeApp = angular.module("changeApp",[]);' +
 
     'changeApp.controller ("changeController", function ($scope) {' +
-        '$scope.items = "' + tags +'";' +
+        '$scope.items = [' + tags +'];' +
         '$scope.project = "' + extractTitle(remote.origin) + '";' +
     '});' +
     '</script>' +
@@ -60,7 +62,7 @@ var toWrite = '<body>'+
                     '<h5>Release {{item[0]}}</h5>' +
                 '</div>' +
                 '<div>' +
-                    '<p ng-repeat="message in item | limitTo:11:1">{{message}}</p>' +
+                    '<p ng-repeat="message in item | limitTo:11:1  track by $index">{{message}}</p>' +
                 '</div>' +
             '</div>' +
         '</div>' +
