@@ -1,11 +1,11 @@
 # auto-changelog
 Automatically generate a changelog based on the tags in your git repository
 
-Uses node to run the `git tag -l  -n10` command against your repo, after which an express server hosts an angular website. The rendered HTML is then saved to output.html using phantomjs (hey, it works, leave me alone).
+Uses node to run the `git tag -l  -n10` command against your repo, after which the HTML is saved to output.html.
 
 ## usage
 Copy the files into a project folder, run `npm install` to get the dependencies.
-![install command](install1.png)
 
-Running `gulp` or `gulp renderChangelog` will give you a fresh changelog in HTML
-![install command](install2.png)
+Running `node server.js` or will give you a fresh changelog in HTML.
+
+Alternatively, don't move the files, 'npm install' and try 'node server.js /path/to/git/repo'.
